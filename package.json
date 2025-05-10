@@ -1,0 +1,22 @@
+{
+  "name": "wonderlust",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mr-sanketsathe/wonderLust.git"
+  },
+  "author": "sanket sathe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mr-sanketsathe/wonderLust/issues"
+  },
+  "homepage": "https://github.com/mr-sanketsathe/wonderLust#readme",
+  "description": "",
+  "dependencies": {
+    "mongoose": "^8.14.2"
+  }
+}
