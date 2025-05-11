@@ -1,4 +1,4 @@
-# Wonderlust 🏡
+# WonderLust 🏡
 
 Wonderlust is a modern Airbnb clone built for discovering and booking unique stays around the world. This responsive web app replicates core features of Airbnb with a clean, user-friendly design.
 
