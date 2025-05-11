@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wonderLust</title>
+</head>
+<body>
+    <h1>Edit listing</h1>
+    <form method="post" action="/listing/<%=data._id%>/edited?_method=put">
+        <input type="text" value="<%=data.title%>" size="51" name="title"><br><br>
+        <textarea name="description" rows="8" cols="50"><%=data.description%></textarea><br><br>
+        <input type="text" value="<%=data.image%>" name="image" size="51"><br><br>
+        <input type="number" value="<%=data.price%>" name="price" size="51"><br><br>
+        <input type="text" value="<%=data.location%>" name="location">
+        <input type="text" value="<%=data.country%>" name="country">
+        <br><br>
+        <button>EDIT</button>
+    </form>
+    
+</body>
+</html>
