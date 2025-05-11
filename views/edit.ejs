@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wonderLust</title>
+    <style>
+        .editbtn{
+            margin-left:1rem;
+            width:5rem;
+            height: 2rem;
+            border-radius: 0.5rem;
+        }
+    </style>
 </head>
 <body>
     <h1>Edit listing</h1>
@@ -15,7 +23,7 @@
         <input type="text" value="<%=data.location%>" name="location">
         <input type="text" value="<%=data.country%>" name="country">
         <br><br>
-        <button>EDIT</button>
+        <button class="editbtn">EDIT</button>
     </form>
     
 </body>
