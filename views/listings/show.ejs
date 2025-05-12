@@ -1,0 +1,20 @@
+<% layout('./layouts/boilerplate') -%>
+<div class="row">
+ <body >
+    </div>
+        <div class="card show-card" style="width: 18rem;">
+        <img src="<%=data.image%>" class="card-img-top" alt="listing">
+        <div class="card-body show-card-body">
+        <h5 class="card-title"><%=data.title%></h5>
+        <p class="card-text">&#x20B9 <%=data.price.toLocaleString("en-Un")%>/night</p>
+        <p class="show-card-text"><%=data.description%></p>
+            <div class="show-card-btn">
+                <a href="/listing/<%=data.id%>/edit" class="btn btn-danger">Edit</a>
+                <form method="post" action="/listing/<%=data._id%>?_method=delete"><button class="btn btn-dark">Delete</button></form>
+            </div>
+        
+         </div>
+    </div>
+  </body>
+</div>
+

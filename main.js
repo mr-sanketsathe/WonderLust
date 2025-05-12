@@ -2,12 +2,15 @@ const mongoose=require("mongoose");
 const listing=require("./models/listing.js");
 const express=require("express");
 const methodOverride=require("method-override");
+const engine=require('ejs-mate');
 const app=express();
 const path=require("path");
 app.set("views",path.join(__dirname,"views"));
+app.use(express.static(path.join(__dirname,"public")));
 app.set("view engine","ejs");
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
+app.engine('ejs',engine);
 main()
 .then((res)=> console.log("connection successful"))
 .catch(err => console.log(err));
@@ -19,20 +22,20 @@ async function main() {
    res.send("root branch");
  })
 //index route
- app.get("/listing", async(req,res)=>{
-  let  data= await listing.find();
-  res.render("index.ejs",{data});
-
- })
+ 
 
  //add route
  app.get("/listing/new",(req,res)=>{
-     res.render("new.ejs");
+     res.render("./listings/new.ejs");
  })
  
  app.post("/listing/new", async(req,res)=>{
     let {title,description,image,price,location,country}=req.body;
-    let newData= await  listing.insertOne({
+    if (!image || image.trim() === "") {
+   image = "https://images.unsplash.com/photo-1631799200294-0f1212ae90f1?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+}
+
+    let newData= await listing.insertOne({
       title:title,
       description:description,
       image:image,
@@ -44,11 +47,17 @@ async function main() {
     res.redirect("/listing");
 
  })
+
+ app.get("/listing", async(req,res)=>{
+  let  data= await listing.find();
+  res.render("./listings/index.ejs",{data});
+
+ })
  //show route
  app.get("/listing/:id", async(req,res)=>{
     let {id}=req.params;
     let data= await listing.findById(id);
-    res.render("show.ejs",{data});
+    res.render("./listings/show.ejs",{data});
   
  })
 
@@ -56,7 +65,7 @@ async function main() {
  app.get("/listing/:id/edit", async (req,res)=>{
     let {id}=req.params;
     let data= await listing.findById(id);
-    res.render("edit.ejs",{data});
+    res.render("./listings/edit.ejs",{data});
     
     
  })

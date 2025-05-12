@@ -10,12 +10,10 @@ const listingSchema= new Schema({
         type:String,
 
     },
-    image:{
-        type: String,
-        default:"https://unsplash.com/photos/tilt-shift-lens-photography-of-flower-field-during-sunset-13VwsTt9pAw",
-        set : (v)=> v=== " "?"https://unsplash.com/photos/tilt-shift-lens-photography-of-flower-field-during-sunset-13VwsTt9pAw":v,
-        
-    },
+    image: {
+    type: String,
+      },
+      
     price:{
         type:Number,
         required:true
