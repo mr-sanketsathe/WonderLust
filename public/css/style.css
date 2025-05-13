@@ -67,10 +67,19 @@ body{
 
 /* index styling */
 
+.index-card-body{
+   padding: 0 !important;
+   padding-left: 1rem !important;
+   
+}
 
+.index-card-body p{
+    margin: 0 !important;
+    
+}
 .card{
     width:19rem;
-    height:22rem;
+    height:20rem;
     padding: 0 !important;
     margin:0 !important;
     border: none;
@@ -93,26 +102,39 @@ body{
 .action-btn button{
     margin:1rem;
 }
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.1;
+    background-color: white;
+    
+}
 
 /* show route */
 .show-card{
     width:25rem !important;
     height:22rem !important;
     border-radius: 1rem;
-    margin-left: 5rem !important;
-    margin-top: 1rem !important;
 
+}
 
+.card-price{
+    margin: 0 !important;
 }
 .show-card img{
     height: 70%;
     width:100%;
     border-radius:1rem;
 }
-
+.show-card-body{
+    margin:0;
+    padding: 0;
+}
 .show-card-text{
     text-align: justify;
-    padding-top:0rem !important;
+   
 }
 .show-card-btn{
     display: flex;
@@ -122,11 +144,6 @@ body{
     margin-right:0.9rem;
 
 }
-.show-card-btn button{
-    width:5rem;
-
-}
-
 .show-card-btn button{
     width:5rem;
 
