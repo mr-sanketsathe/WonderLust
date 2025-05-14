@@ -33,7 +33,7 @@ async function main() {
     let {title,description,image,price,location,country}=req.body;
     if (!image || image.trim() === "") {
    image = "https://images.unsplash.com/photo-1631799200294-0f1212ae90f1?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-}
+};
 
     let newData= await listing.insertOne({
       title:title,
