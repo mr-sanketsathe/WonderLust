@@ -45,7 +45,7 @@ body{
 .footer{
     height: 8rem;
     width: 100%;
-    background-color:gray;
+    background-color:#fe424d;;
     padding:1rem;
 
 
@@ -142,16 +142,17 @@ body{
 /* show route */
 
 .show-card{
-    width:30rem !important;
+    width:100% !important;
     height:23rem !important;
     border-radius: 1rem;
+    
 
 }
 .card-price{
     margin: 0 !important;
 }
 .show-card img{
-    height: 70%;
+    height:70%;
     width:100%;
     border-radius:0.3rem;
 }
@@ -182,3 +183,21 @@ body{
     width:5rem;
 
 }
+.show-section{
+    width:80%;
+}
+ .review{
+   width:100% !important;
+    height:23rem !important;
+    margin-left:5rem;
+    margin-top: 8rem;
+    padding: auto;
+    border-top:1px solid black
+    
+ }
+
+ .allReview{
+    margin-top:1rem !important;
+    margin-bottom: 1rem !important;
+ }
+

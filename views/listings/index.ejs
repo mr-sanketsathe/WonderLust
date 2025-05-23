@@ -1,5 +1,7 @@
  <% layout('./layouts/boilerplate') -%> 
-     <body>    
+      
+     <body>   
+      
      <div class="row row-cols-lg-4 row-cols-md-1 row-cols-sm-1 indexbody">
                <%for(let d of data){%>
                <a href="/listing/<%=d._id%>">
@@ -10,12 +12,13 @@
                <div class="card-body index-card-body">
                     <p class="card-title"><b><%=d.title%></b></p>
                     <p class="card-price">&#x20B9 <%=d.price.toLocaleString("en-UN")%>/night</p>
+                    
      
                </div>
                </div>
                </a>
               <%}%>
-     </div>
+          </div>
           
      </body>
 
