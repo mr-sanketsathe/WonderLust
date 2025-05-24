@@ -28,10 +28,13 @@
                   <textarea id="comment" required name="review[comment]" rows="5" cols="30" class="form-control"></textarea>
                   <div class="invalid-feedback">enter some comment before submit</div>
                 </div>
-                <button class="btn btn-outline-dark mt-2">submit</button>
+                <button class="btn btn-outline-dark mt-3">submit</button>
               </form>
           </div>
+          
+          <hr style="margin-left: 40%;">
           <div>
+             <p style="margin-left: 40%;" >All reviews</p>
               <% for(let r of data.reviews){%>
              <div class="card allReview" style="width:100%; border:1px solid black;height:13rem">
               <div class="card-body m-3">

@@ -49,7 +49,7 @@ router.post("/new",wrapAsync(async(req,res,next)=>{
             country:country,
           });
           let addedData=await newData.save();
-          console.log(addedData);
+          // console.log(addedData);
           req.flash('success','New listing created');
           res.redirect("/listing");  
 
@@ -86,7 +86,7 @@ router.post("/new",wrapAsync(async(req,res,next)=>{
       location:location,
       country:country
     });
-    console.log(newData);
+    req.flash('success','Listing edited');
     res.redirect(`/listing/${id}`);
   }
 
@@ -99,8 +99,9 @@ router.post("/new",wrapAsync(async(req,res,next)=>{
       if(!deleteData){
         next(new ExpressError(404,"Data not found"));
       }else{
+         req.flash("success",'Listing deleted');
           res.redirect("/listing");
-          console.log(deleteData);
+       
 
       }
        }));

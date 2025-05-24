@@ -1,19 +1,19 @@
 const mongoose=require("mongoose");
 const express=require("express");
-const listing = require("./models/listing.js");
 const methodOverride=require("method-override");
 const engine=require('ejs-mate');
 const app=express();
 const path=require("path");
-const review=require("./models/review.js");
-const ExpressError=require("./utils/ExpressError.js");
-const wrapAsync=require("./utils/wrapAsync.js");
 const session=require('express-session');
 const flash=require('connect-flash');
-const listings=require("./routes/listing.js");
-const reviews=require("./routes/review.js");
+const listingsRouter=require("./routes/listing.js");
+const reviewsRouter=require("./routes/review.js");
+const userRouter=require('./routes/user.js');
+const passport=require('passport');
+const LocalStratergy=require('passport-local').Strategy;
+const user=require('./models/user.js');
 main()
-.then((res)=> console.log("connection successful"))
+.then(()=> console.log("connection successful"))
 .catch(err => console.log(err));
 
 async function main() {
@@ -35,20 +35,27 @@ const sessionOptions={
   saveUninitialized:true
 }
 app.use(session(sessionOptions));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStratergy(user.authenticate()));
+passport.serializeUser(user.serializeUser());
+passport.deserializeUser(user.deserializeUser());
 app.use(flash());
 app.use((req,res,next)=>{
   res.locals.success=req.flash('success');
-  console.log(req.flash('s'));
   next();
 });
-app.use("/listing",listings);
-app.use("/listing/:id/reviews",reviews);
+app.use("/listing",listingsRouter);
+app.use("/listing/:id/reviews",reviewsRouter);
+app.use('/',userRouter);
+
+
 
 //error handler 
   app.use((err,req,res,next)=>{
     let {status=500,msg="some error occured"}=err;
     res.status(status).render("error.ejs",{msg});
-    
+    next();
   })
   
   

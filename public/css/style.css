@@ -21,6 +21,7 @@ body{
     flex:1 !important;
     padding: auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     
 }
@@ -142,8 +143,9 @@ body{
 /* show route */
 
 .show-card{
-    width:100% !important;
-    height:23rem !important;
+    width:60% !important;
+    height:25rem !important;
+    margin-left:40% !important;
     border-radius: 1rem;
     
 
@@ -187,9 +189,9 @@ body{
     width:80%;
 }
  .review{
-   width:100% !important;
+    width:60% !important;
     height:23rem !important;
-    margin-left:5rem;
+    margin-left:40% !important;
     margin-top: 8rem;
     padding: auto;
     border-top:1px solid black
@@ -197,7 +199,9 @@ body{
  }
 
  .allReview{
+    width:60% !important;
     margin-top:1rem !important;
     margin-bottom: 1rem !important;
+    margin-left: 40% !important;
  }
 
