@@ -1,7 +1,7 @@
 <% layout('./layouts/boilerplate') -%>
 <div class="col-8 offset-2">
     <body>
-    <form method="post" action="/listing/<%=data._id%>/edited?_method=put" novalidate class="needs-validation">
+    <form method="post" action="/listing/<%=data._id%>/edit?_method=put" novalidate class="needs-validation">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
              <input type="text" class="form-control" placeholder="Enter catchy title" value="<%=data.title%>" name="title" required/>

@@ -1,3 +1,6 @@
+if(process.env.NODE_ENV !='production'){
+  require('dotenv').config();
+}
 const mongoose=require("mongoose");
 const express=require("express");
 const methodOverride=require("method-override");
@@ -43,6 +46,9 @@ passport.deserializeUser(user.deserializeUser());
 app.use(flash());
 app.use((req,res,next)=>{
   res.locals.success=req.flash('success');
+  res.locals.error=req.flash('error');
+  res.locals.user=req.user;
+  // console.log(res.locals.user);
   next();
 });
 app.use("/listing",listingsRouter);

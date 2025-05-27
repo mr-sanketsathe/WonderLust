@@ -12,7 +12,8 @@ const listingSchema= new Schema({
 
     },
     image: {
-    type: String,
+        url:String,
+        filename:String,
       },
       
     price:{
@@ -33,7 +34,11 @@ const listingSchema= new Schema({
             ref:'review',
         }
         
-    ]
+    ],
+    owner:{
+        type:Schema.Types.ObjectId,
+        ref:'user'
+    }
     
 
 });

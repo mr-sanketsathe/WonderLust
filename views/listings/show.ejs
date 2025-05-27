@@ -3,47 +3,70 @@
       <div class='show-section'>
           <div class="card show-card" style="width: 18rem;">
               <h4 class="mt-2 mb-2"><%=data.title%></h4>  
-              <img src="<%=data.image%>" class="card-img-top" alt="listing">
+              <img src="<%=data.image.url%>" class="card-img-top" alt="listing">
               <div class="card-body show-card-body">
+                  <p style="margin-right:0;"><i>Owned by- <b><%=data.owner.username%></b></i></p>
                   <p class="card-price">&#x20B9 <%=data.price.toLocaleString("en-Un")%>/night</p>
                   <p class="show-card-text"><%=data.description%></p>
                   <p class="show-card-location"><i><b><%=data.location%>,<%=data.country%></b></i></p>
-                  <div class="show-card-btn">
+                   <%if(data.owner.equals(user._id)){%>
+                    <div class="show-card-btn">
                         <a href="/listing/<%=data.id%>/edit" class="btn btn-danger">Edit</a>
                         <form method="post" action="/listing/<%=data._id%>?_method=delete"><button class="btn btn-dark">Delete</button></form>
-                  </div>
+                    </div>
+                   <%}%>  
             
               </div>
           </div>
-           <div class="review">
-            <br>
-              <h4>Leave your review</h4>
-              <form method="post" action="/listing/<%=data.id%>/reviews" novalidate class="needs-validation">
-                <div>
-                  <label for="rating" class="form-label"></label>
-                  <input type="range" min="1" max="5" class="form-range" id="rating" name="review[rating]"/>
-                </div>
-                <div>
-                  <label for="comment" class="form-label"></label>
-                  <textarea id="comment" required name="review[comment]" rows="5" cols="30" class="form-control"></textarea>
-                  <div class="invalid-feedback">enter some comment before submit</div>
-                </div>
-                <button class="btn btn-outline-dark mt-3">submit</button>
-              </form>
-          </div>
-          
-          <hr style="margin-left: 40%;">
-          <div>
-             <p style="margin-left: 40%;" >All reviews</p>
-              <% for(let r of data.reviews){%>
-             <div class="card allReview" style="width:100%; border:1px solid black;height:13rem">
-              <div class="card-body m-3">
-              <h5 class="card-title">jone doe </h5>
-              <p class="card-text"><%=r.comment%></p>
-              <p><%=r.rating%>stars</p>
-              <form method="post" action="/listing/<%=data.id%>/reviews/<%=r.id%>?_method=delete"><button class="btn btn-dark">Delete</button></form>
-            </div>
-          </div>
+                <div class="review">
+                 <br>
+                    <h4>Leave your review</h4>
+                   
+                        <form method="post" action="/listing/<%=data.id%>/reviews" novalidate class="needs-validation">
+                      <div>
+                          <label for="rating" class="form-label">rating</label>
+                          <fieldset class="starability-slot">
+                            <input  type="radio" id="no-rate" class="input-no-rate" name="rating" value="1" checked aria-label="No rating." />
+                            <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                            <label for="first-rate1" title="Terrible">1 star</label>
+                            <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                            <label for="first-rate2" title="Not good">2 stars</label>
+                            <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                            <label for="first-rate3" title="Average">3 stars</label>
+                            <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                            <label for="first-rate4" title="Very good">4 stars</label>
+                            <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                            <label for="first-rate5" title="Amazing">5 stars</label>
+                          </fieldset>
+                      </div>
+
+                      <div>
+                        <label for="comment" class="form-label"></label>
+                        <textarea id="comment" required name="review[comment]" rows="5" cols="30" class="form-control"></textarea>
+                        <div class="invalid-feedback">enter some comment before submit</div>
+                      </div>
+                      <button class="btn btn-outline-dark mt-3">submit</button>
+                    </form>           
+                  </div>   
+           
+                  
+           
+
+          <hr style="margin-left: 25%;">
+          <div class="row row-cols-12">
+              <p style="margin-left: 25%;" >All reviews</p>
+                <% for(let r of data.reviews){%>
+              <div class="col-6 card allReview" style="width:100%; border:1px solid black;height:13rem">
+                <div class="card-body m-3">
+                <h5 class="card-title"><i style="font-size: 2rem; margin-right: 0.5rem;"   class="fa-solid fa-circle-user"></i><i style="font-size: 1.5rem;"><%=r.author.username%></i></h5>
+                 <p  class="starability-result" data-rating="<%=r.rating%>"></p>
+                <p class="card-text"><%=r.comment%></p>
+               <%if( r && r.author.equals(user._id)){%>
+                   <form method="post" action="/listing/<%=data.id%>/reviews/<%=r.id%>?_method=delete"><button class="btn btn-dark">Delete</button></form>
+
+                  <%}%>
+                  </div>
+               </div>
            <%}%>
           </div>>
           
