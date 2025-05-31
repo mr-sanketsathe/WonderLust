@@ -1,4 +1,8 @@
 <% layout('./layouts/boilerplate') -%>
+<body>
+<script>
+  const Cord = <%- JSON.stringify(data.coordinates)%>
+ </script>
 <div class="row">
       <div class='show-section'>
           <div class="card show-card" style="width: 18rem;">
@@ -51,10 +55,12 @@
            
                   
            
-
-          <hr style="margin-left: 25%;">
+          <%if(data.reviews.length>0){%>
+            <hr style="margin-left: 25%;">
+           <p style="margin-left: 25%;" >All reviews</p>
+          <%}%>
+          
           <div class="row row-cols-12">
-              <p style="margin-left: 25%;" >All reviews</p>
                 <% for(let r of data.reviews){%>
               <div class="col-6 card allReview" style="width:100%; border:1px solid black;height:13rem">
                 <div class="card-body m-3">
@@ -68,12 +74,22 @@
                   </div>
                </div>
            <%}%>
-          </div>>
+          </div>
           
 
       </div>
-  
-          
+      <h2 style="margin-left:20%;margin-top:1rem;">Where you'll be</h2>
+      <div id="map"></div>
+      <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+      <script src="/js/map.js"></script>
+     
+        
+        
   </div>
+  
+</body>
+
 
 

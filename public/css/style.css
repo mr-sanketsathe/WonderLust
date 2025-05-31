@@ -205,3 +205,12 @@ body{
     margin-left:25% !important;
  }
 
+ /* maps styling */
+ #map{
+    margin:1rem;
+     margin-left:20%;
+     width:64%; 
+     height:300px;
+   
+ }
+

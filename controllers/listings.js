@@ -26,72 +26,115 @@ module.exports.index=(async(req,res,next)=>{
       },
     })
     .populate('owner');
-    // console.log(data);
     if(!data){
       next(new ExpressError(404,"listing not found"));
       req.flash('error','listing not found');
       res.redirect('/listing');
     }else{
-        res.render("./listings/show.ejs",{data});
-       
-  
-    }
+      res.render("./listings/show.ejs",{data,});
+        }
     
  });
 
  //create controller
 
- module.exports.create=(async(req,res,next)=>{
-          let {title,description,price,location,country}=req.body;
-          let owner=req.user;
-          let url=req.file.path;
-          let filename=req.file.filename;
-          let newData= new listing({
-            title:title,
-            description:description,
-            price:price,
-            location:location,
-            country:country,
-            owner:owner
-          });
-          newData.image={url,filename};
-          let addedData=await newData.save();
-          console.log(addedData);        
-          req.flash('success','New listing created');
-          res.redirect("/listing"); 
+ module.exports.create=(async(req,res,next)=>{  
+        let {title,description,price,location,country}=req.body;
+         const address = `${location}, ${country}`;
+          const api = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1&addressdetails=1`;
+          const response = await fetch(api, {
+              headers: {
+                'Accept-Language': 'en',
+                'User-Agent': 'LeafletAppExample/1.0', // Required for Nominatim's usage policy
+                  
+              }
+            });
+           const data = await response.json();
+           console.log(data);
+           if(!data ||data.length==0){
+               req.flash("could not find location");
+              }
+              let lat=data[0].lat;
+              let lon=data[0].lon;
+              let owner=req.user;
+              let url=req.file.path;
+              let filename=req.file.filename;
+              let newData= new listing({
+                title:title,
+                description:description,
+                price:price,
+                location:location,
+                country:country,
+                owner:owner,
+              });
+              newData.image={url,filename};
+              newData.coordinates=[lat,lon];
+              let addedData=await newData.save();
+
+              console.log(addedData);        
+              req.flash('success','New listing created');
+              res.redirect("/listing"); 
  });
 
  //edit controller
  module.exports.edit=(async (req,res,next)=>{
+    
      let {id}=req.params;
      let data= await listing.findById(id);
      if(!data){
        throw new ExpressError(404,"data not found");
+     }else{
+         let originalImageUrl=data.image.url;
+         originalImageUrl.replace('/upload','/upload/w_250');
+         res.render("./listings/edit.ejs",{data,originalImageUrl});
      }
-     res.render("./listings/edit.ejs",{data});
+    
      });
  //edited controller
  module.exports.edited=(async (req,res,next)=>{
-    let {id}=req.params;
+   
     if(req.body===undefined || null){
       next(new ExpressError(400,"add relevent infomation"));
     }else{
-    let {title,description,image,price,location,country}=req.body;
-    if (!image || image.trim() === "") {
-    image = "https://images.unsplash.com/photo-1631799200294-0f1212ae90f1?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-   };
+    let {id}=req.params;
+    let url=req.file.path;
+    let filename=req.file.filename;
+    let {title,description,price,location,country}=req.body;
+     const address = `${location}, ${country}`;
+          const api = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1&addressdetails=1`;
+          const mapRes = await fetch(api, {
+              headers: {
+                'Accept-Language': 'en',
+                'User-Agent': 'LeafletAppExample/1.0', // Required for Nominatim's usage policy
+                  
+              }
+            });
+           const mapData = await mapRes.json();
+           let lat=mapData[0].lat;
+           let lon=mapData[0].lon;
+            let data= await listing.updateOne(
+            { _id: id },
+            {
+            $set: {
+              title: title,
+              description: description,
+              price: price,
+              location: location,
+              image:{
+                url:url,
+                filename:filename,
+              },
+              country: country,
+              coordinates:[lat,lon],
+              },
+              }
+            );
 
-   let newData= await listing.updateOne({_id:id},{
-      title:title,
-      description:description,
-      image:image,
-      price:price,
-      location:location,
-      country:country
-    });
-    req.flash('success','Listing edited');
-    res.redirect(`/listing/${id}`);
-  }
+            req.flash('success','Listing edited');
+            res.redirect(`/listing/${id}`);
+          
+    
+    }
 
  });
 
@@ -105,7 +148,7 @@ module.exports.index=(async(req,res,next)=>{
           req.flash("error",'Listing deleted');
            res.redirect("/listing");
        }       
-        });
+});
 
  
 

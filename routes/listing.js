@@ -24,7 +24,7 @@ router.get("/",wrapAsync(controllerListing.index));
  //renderEditform and update route
 router.route('/:id/edit')
   .get(isLoggedIn,isOwner,wrapAsync(controllerListing.edit))
-  .put(isLoggedIn,isOwner,wrapAsync(controllerListing.edited));
+  .put(isLoggedIn,upload.single('image'),isOwner,wrapAsync(controllerListing.edited));
 
 
  

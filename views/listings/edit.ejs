@@ -1,7 +1,7 @@
 <% layout('./layouts/boilerplate') -%>
 <div class="col-8 offset-2">
     <body>
-    <form method="post" action="/listing/<%=data._id%>/edit?_method=put" novalidate class="needs-validation">
+    <form method="post" action="/listing/<%=data._id%>/edit?_method=put" novalidate class="needs-validation" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
              <input type="text" class="form-control" placeholder="Enter catchy title" value="<%=data.title%>" name="title" required/>
@@ -15,10 +15,14 @@
              <textarea name="description" placeholder="Describe your listing" required class="form-control"><%=data.description%></textarea>
               <div class="invalid-feedback">Description is required</div>
         </div>
-        
+         <label for="img" class="form-label">Original Image</label>
+          <div class="mb-3">
+            
+             <img id="img" style="width:200px;height: 100px;"src="<%=data.image.url%>" alt="listing">
+        </div>
         <div class="mb-3">
-            <label for="image" class="form-label">Image(url)</label>
-             <input type="text" class="form-control" placeholder="Set image" value="<%=data.image%>" name="image"/>
+            <label for="image" class="form-label">Chose another image</label>
+             <input type="file" id="image" class="form-control"  name="image" required/>
         </div>
        
         <div class="mb-3">
