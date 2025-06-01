@@ -8,6 +8,7 @@ const engine=require('ejs-mate');
 const app=express();
 const path=require("path");
 const session=require('express-session');
+const mongoStore=require('connect-mongo');
 const flash=require('connect-flash');
 const listingsRouter=require("./routes/listing.js");
 const reviewsRouter=require("./routes/review.js");
@@ -15,13 +16,15 @@ const userRouter=require('./routes/user.js');
 const passport=require('passport');
 const LocalStratergy=require('passport-local').Strategy;
 const user=require('./models/user.js');
+const  dbUrl=process.env.ATLASDB_URL;
+async function main() {
+  await mongoose.connect(dbUrl);
+}
 main()
 .then(()=> console.log("connection successful"))
 .catch(err => console.log(err));
 
-async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/wonderLust');
-}
+
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs");
 app.use(express.json());
@@ -29,11 +32,16 @@ app.use(express.static(path.join(__dirname,"public")));
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.engine('ejs',engine);
-app.get("/",(req,res)=>{
-   res.send("root branch");
- })
+const store=mongoStore.create({
+  mongoUrl:dbUrl,
+  crypto:{
+    secret:process.env.SECRET,
+  },
+  touchAfter:24*3600,
+});
 const sessionOptions={
-  secret:'mysecret',
+  store:store,
+  secret:process.env.SECRET,
   resave:false,
   saveUninitialized:true
 }

@@ -1,8 +1,11 @@
 <% layout('./layouts/boilerplate') -%>
 <body>
-<script>
-  const Cord = <%- JSON.stringify(data.coordinates)%>
- </script>
+  <script>
+  const Cord = JSON.parse('<%= JSON.stringify(data.coordinates || {}) %>');
+</script>
+
+
+
 <div class="row">
       <div class='show-section'>
           <div class="card show-card" style="width: 18rem;">
@@ -88,8 +91,11 @@
         
         
   </div>
+
+  </body>
   
-</body>
+  
+
 
 
 

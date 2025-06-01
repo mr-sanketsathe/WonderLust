@@ -6,12 +6,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link " href="/">Home</a>
-        <a class="nav-link" href="/listing">All Listing</a>
+        
+        <a class="nav-link" href="/listing">Explore</a>
         <a class="nav-link" href="/listing/new">Add Listing</a>
         
       </div>
-      <div class="navbar-nav ms-auto">
+      <div class="search-bar ms-auto">
+         <div class="container-fluid">
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="enter location eg.state,country" aria-label="Search"/>
+            <button class="btn btn-outline-danger search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+        </div>
+
+      </div>
+      <div class="navbar-nav ms-auto auth-options">
         <% if(!user){%>
           <a class="nav-link " href="/signup">signup</a>
            <a class="nav-link" href="/login">login</a>
