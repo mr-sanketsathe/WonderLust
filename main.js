@@ -61,7 +61,7 @@ app.use((req,res,next)=>{
 app.use("/listing",listingsRouter);
 app.use("/listing/:id/reviews",reviewsRouter);
 app.get('/', (req, res) => {
-    res.render('./listins/index.ejs'); 
+    res.render('./listings/index.ejs'); 
 });
 
 app.use('/',userRouter);
