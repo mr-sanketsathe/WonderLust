@@ -16,10 +16,9 @@ body{
     width: 100% !important;
 }
 .container{
-    width:100%;
     flex:1 !important;
-    
-    
+    margin: 0;
+    padding: 0;
 
 }
 /* navbar */
@@ -74,44 +73,59 @@ body{
 .f-links a:hover{
     text-decoration: underline;
 }
-
+/* 
 /* index styling */
 
-.index-card-body{
-   padding: 0 !important;
-   padding-left: 1rem !important;
+ .indexBody{
+   width:100%!important;
+   height:100%!important; 
+   padding: 0.2rem;
+   display: flex;
+   
+   
    
 }
 
-.index-body a{
-    width:25rem;
-    height:22rem;
-    margin-top:0.9rem !important;
-    border: none;
-    border-radius:0.3rem ;
-}
-.index-card-body p{
-    margin: 0 !important;
-    
-}
 .card{
-   width:100%;
-    height: 100%;
-    margin-top:0.9rem !important;
-    border: none;
-    border-radius:0.3rem ;
-    margin-right: 2rem;
-
+    width: 25rem!important;
+    height:20rem!important;
+    border-radius:0.5rem ;
+    margin:0.5rem;
+    padding:0;
+    border:none;
+    
+   
 
 }
 
-.card-image{
-    width:100%;
-    height: 100%;
-    border-radius:0.3rem;
-    
+.card-link{
+     width:100% !important;
+     height:100% !important;
+     border-radius:0.3rem ;
+     color:#222222;
+     
 }
  
+.card-image{
+    width:100%;
+    height:17rem;
+    border-radius:0.5rem;
+
+
+    
+} 
+
+.index-card-body{
+    height: 5rem;
+    width: 100%;
+    padding: 0;
+    padding-left: 0.2rem;
+}
+ 
+.card-title{
+    margin:0;
+
+}
 .like-symbol{
     width:100%;
     height: 2rem;
@@ -126,6 +140,7 @@ body{
 
 .like-symbol i{
     color:rgb(182, 177, 177);
+    
    
 }
 
@@ -148,7 +163,10 @@ body{
     opacity: 0.1;
     background-color: white;
     
-}
+} 
+
+
+
 
 /* show route */
 
@@ -213,6 +231,7 @@ body{
     margin-top:1rem !important;
     margin-bottom: 1rem !important;
     margin-left:25% !important;
+    height: 20% !important;
  }
 
  /* maps styling */
