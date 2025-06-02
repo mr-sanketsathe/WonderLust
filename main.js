@@ -61,6 +61,10 @@ app.use((req,res,next)=>{
 });
 app.use("/listing",listingsRouter);
 app.use("/listing/:id/reviews",reviewsRouter);
+app.get('/', (req, res) => {
+    res.render('./listins/index.ejs'); 
+});
+
 app.use('/',userRouter);
 
 
@@ -71,7 +75,6 @@ app.use('/',userRouter);
     res.status(status).render("error.ejs",{msg});
     next();
   })
-  
   
   app.listen(3000,()=>{
     console.log("listening to 3000");
