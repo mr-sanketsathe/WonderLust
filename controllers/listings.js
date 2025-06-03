@@ -8,6 +8,7 @@ module.exports.index=(async(req,res,next)=>{
     throw new ExpressError(404,"Data not found");
   }else{
       res.render("./listings/index.ejs",{data});
+      
   }
  });
  //add controller
@@ -50,7 +51,7 @@ module.exports.index=(async(req,res,next)=>{
               }
             });
            const data = await response.json();
-           console.log(data);
+          //  console.log(data);
            if(!data ||data.length==0){
                req.flash("could not find location");
               }
@@ -71,7 +72,7 @@ module.exports.index=(async(req,res,next)=>{
               newData.coordinates=[lat,lon];
               let addedData=await newData.save();
 
-              console.log(addedData);        
+              // console.log(addedData);        
               req.flash('success','New listing created');
               res.redirect("/listing"); 
  });
