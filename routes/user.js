@@ -5,6 +5,7 @@ const ExpressError = require('../utils/ExpressError.js');
 const passport = require('passport');
 const{saveRedirectUrl}=require('../middleware.js');
 const userControllers=require('../controllers/users.js');
+const listingControllers=require('../controllers/listings.js');
 
 //renderSignupform and signUp
 
@@ -18,6 +19,8 @@ router.route('/login')
     .post(saveRedirectUrl,passport.authenticate("local",{failureRedirect:'/login',failureFlash:true}),(userControllers.login));
 
 router.get('/logout',(userControllers.logout));
+
+router.get('/',(listingControllers.index));
 
 
 module.exports=router;
