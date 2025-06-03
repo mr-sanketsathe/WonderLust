@@ -10,7 +10,7 @@ const multer=require('multer');
 const upload=multer({storage});
 
 
-router.get("/",wrapAsync(controllerListing.index));
+router.get("/",controllerListing.index);
 //renderNewform and create new listing 
 router.route('/new')
   .get(isLoggedIn,(controllerListing.add))
