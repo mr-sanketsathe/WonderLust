@@ -8,7 +8,6 @@ module.exports.index=(async(req,res,next)=>{
     throw new ExpressError(404,"Data not found");
   }else{
       res.render("./listings/index.ejs",{data});
-      
   }
  });
  //add controller
