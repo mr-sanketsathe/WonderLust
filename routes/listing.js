@@ -1,8 +1,6 @@
 const express=require('express');
 const router=express.Router();
-// const ExpressError=require("../utils/ExpressError.js");
 const wrapAsync=require("../utils/wrapAsync.js");
-// const {listingSchema}=require("../Schema.js");
 const {isLoggedIn,isOwner}=require('../middleware.js');
 const controllerListing=require('../controllers/listings.js');
 const {storage}=require('../cloudConfig.js');
@@ -21,12 +19,15 @@ router.route('/:id')
   .delete(isLoggedIn,isOwner,wrapAsync(controllerListing.destroy));
 
 router.get("/",wrapAsync(controllerListing.index));
+
+  
+
  //renderEditform and update route
 router.route('/:id/edit')
   .get(isLoggedIn,isOwner,wrapAsync(controllerListing.edit))
   .put(isLoggedIn,upload.single('image'),isOwner,wrapAsync(controllerListing.edited));
 
+router.route('/search')
+  .post(controllerListing.search);
 
- 
-
-  module.exports=router;
+module.exports=router;

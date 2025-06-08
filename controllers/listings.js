@@ -146,9 +146,21 @@ module.exports.index=(async(req,res,next)=>{
          next(new ExpressError(404,"Data not found"));
        }else{
           req.flash("error",'Listing deleted');
-           res.redirect("/listing");
+          res.redirect("/listing");
        }       
 });
 
+module.exports.search=(async(req,res,next)=>{
+   let{location}=req.body;
+   console.log(location);
+   let data= await listing.find({location});
+   if(data.length>0){
+      res.render("./listings/index.ejs",{data});  
+   }else{  
+      req.flash('error','No listing found ');
+      res.redirect('/listing');
+   }
+   
+})
  
 

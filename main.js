@@ -62,8 +62,6 @@ app.use("/listing",listingsRouter);
 app.use("/listing/:id/reviews",reviewsRouter);
 app.use('/',userRouter);
 
-
-
 //error handler 
   app.use((err,req,res,next)=>{
     let {status=500,msg="some error occured"}=err;
