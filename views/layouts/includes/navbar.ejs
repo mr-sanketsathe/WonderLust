@@ -1,54 +1,49 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-expand-md bg-body-tertiary border-bottom">
+<!-- Bootstrap Navbar -->
+<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand " href="#"><i class="fa-regular fa-compass"></i></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="#"><i class="fa-regular fa-compass"></i></a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        
+
+    <div class="collapse navbar-collapse bg-white" id="navbarNavDropdown">
+      <!-- Left Nav Links -->
+      <div class="navbar-nav me-auto">
         <a class="nav-link" href="/listing">Explore</a>
         <a class="nav-link" href="/listing/new">Add Listing</a>
-        
       </div>
-      <div class="search-bar ms-auto">
-         <div class="container-fluid">
-          <form class="d-flex"  method="POST" action='/listing/search'>
-            <input class="form-control me-2 " type="search" name="location" placeholder="Search as eg.satara,Maharastra,india" aria-label="Search"/>
-            <button class="btn btn-outline-danger search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-          </form>
-        </div>
 
-      </div>
-      <div class="navbar-nav ms-auto auth-options">
-        <%if(!user){%>
-            <a class="nav-link " href="/signup">signup</a>
-           <a class="nav-link" href="/login">login</a>
-     
-        <%}%>
-         <%  if(user){%>
-            <a class="nav-link" href="/logout">logout</a>
-            <%}%>
-     
-        
-        
+      <!-- Search Bar -->
+      <!-- Responsive Search Bar -->
+  <div class="row">
+  <div class="col-12">
+<form class="d-flex flex-grow-1 mx-2 my-2 my-lg-0" method="POST" action="/listing/search" role="search">
+  <input
+  class="form-control me-2 w-100 w-sm-75 w-md-50 w-lg-25"
+  type="search"
+  name="location"
+  placeholder="Satara, Maharashtra"
+  aria-label="Search"
+/>
+
+  <button class="btn btn-outline-danger w-40 w-sm-40 w-md-30 w-lg-30" type="submit">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+</form>
+</div>
+</div>
+
+      <!-- Auth Links -->
+      <div class="navbar-nav">
+        <% if (!user) { %>
+          <a class="nav-link" href="/signup">Signup</a>
+          <a class="nav-link" href="/login">Login</a>
+        <% } else { %>
+          <a class="nav-link" href="/logout">Logout</a>
+        <% } %>
       </div>
     </div>
-   
   </div>
-
-   
-</nav> 
-<div class="filters">
-    <div><a href=""><i class="fa-solid fa-fire"></i></a><p>Trending</p></div>
-    <div><a href=""><i class="fa-solid fa-bed"></i></a><p>Rooms</p></div>
-    <div><a href=""><i class="fa-solid fa-city"></i></a><p>Iconic cities</p></div>
-    <div><a href=""><i class="fa-solid fa-mountain-sun"></i></a><p>Mountains</p></div>
-    <div><a href=""><i class="fa-solid fa-person-swimming"></i></a><p>Amezing pools</p></div>
-    <div><a href=""><i class="fa-solid fa-cow"></i></a><p>Farm</p></div>
-    <div><a href=""><i class="fa-solid fa-ship"></i></a><p>Boats</p></div>
-    <div><a href=""><i class="fa-solid fa-umbrella-beach"></i></a><p>Beach</p></div>
-    <div><a href=""><i class="fa-solid fa-igloo"></i></a><p>Dome</p></div>
-    <div><a href=""><i class="fa-solid fa-place-of-worship"></i></a><p>Castles</p></div>
-  
-</div>
+</nav>

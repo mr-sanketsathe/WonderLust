@@ -1,4 +1,8 @@
- <% layout('./layouts/boilerplate') -%>
- <body>
-    <div class=" card alert alert-danger" style="height: 10%; display: flex; align-items: center; justify-content: center;"><%=msg%></div>
- </body>
+<% layout('./layouts/boilerplate') -%>
+<body>
+  <div class="container my-3">
+    <div class="alert alert-danger d-flex justify-content-center align-items-center text-center" role="alert" style="min-height: 60px;">
+      <%= msg %>
+    </div>
+  </div>
+</body>

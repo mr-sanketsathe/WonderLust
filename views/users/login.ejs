@@ -1,21 +1,23 @@
-<% layout('./layouts/boilerplate') -%> 
+<% layout('./layouts/boilerplate') -%>
 <body>
-   <div class="row">
-     <h4 class="col-8 offset-5 mb-2 mt-5">Login</h4>
-    <form method="post" action="/login" class="col-6 offset-3 needs-validation" novalidate>
-        <div class=" offset-2 col-7 mb-3">
-            <label for="username" class="form-label">Username</label>
-             <input type="text" class="form-control"name="username" id="username" required/>
-             <div class="invalid-feedback">please enter username</div>
-
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="w-100" style="max-width: 400px;">
+      <h4 class="text-center mb-4">Login</h4>
+      <form method="post" action="/login" class="needs-validation" novalidate>
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" name="username" id="username" required />
+          <div class="invalid-feedback">Please enter username</div>
         </div>
-         <div class="col-7 offset-2 mb-3">
-            <label for="password" class="form-label">password</label>
-             <input type="password" id="password" class="form-control" name="password" required/>
-              <div class="invalid-feedback">please enter password</div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" class="form-control" name="password" required />
+          <div class="invalid-feedback">Please enter password</div>
         </div>
-        <button class="btn btn-success offset-2">Login</button>
-    </form>
-   </div>
-    
+        <div class="d-grid">
+          <button class="btn btn-success">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </body>

@@ -1,46 +1,57 @@
 <% layout('./layouts/boilerplate') -%>
-<div class=" row col-8 offset-2">
-   <body>
-    <h4  class="col-8 offset-4 mt-4">Add Listing</h4>
-     <form method="post" action="/listing/new" novalidate class="needs-validation" enctype="multipart/form-data">
+
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+      <h4 class="text-center mb-4">Add Listing</h4>
+
+      <form method="POST" action="/listing/new" enctype="multipart/form-data" novalidate class="needs-validation">
+
+        <!-- Title -->
         <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-             <input type="text" class="form-control" placeholder="enter catchy title" name="title" required/>
-              <div class="valid-feedback">Title is awesome !</div>
-              <div class="invalid-feedback">Enter title</div>
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" name="title" placeholder="Enter catchy title" required>
+          <div class="valid-feedback">Title is awesome!</div>
+          <div class="invalid-feedback">Enter title</div>
         </div>
-       
+
+        <!-- Description -->
         <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-             <textarea name="description" placeholder="Describe your listing" class="form-control" required></textarea>
-             <div class="invalid-feedback">Enter some description</div>
+          <label for="description" class="form-label">Description</label>
+          <textarea class="form-control" name="description" placeholder="Describe your listing" rows="4" required></textarea>
+          <div class="invalid-feedback">Enter some description</div>
         </div>
+
+        <!-- Image -->
         <div class="mb-3">
-            <label for="image" class="form-label">Image</label>
-             <input type="file" class="form-control" name="image" required/>
-             
+          <label for="image" class="form-label">Image</label>
+          <input type="file" class="form-control" name="image" required>
         </div>
-       
+
+        <!-- Price -->
         <div class="mb-3">
-            <label for="price" class="form-label">Price</label>
-            <input class="form-control" placeholder="e.g 1300" name="price" required/>
-            <div class="invalid-feedback">Enter Valid Price</div>
+          <label for="price" class="form-label">Price</label>
+          <input type="number" class="form-control" name="price" placeholder="e.g. 1300" required>
+          <div class="invalid-feedback">Enter valid price</div>
         </div>
+
+        <!-- Location and Country -->
         <div class="row">
-            <div class="mb-3 col-4">
+          <div class="mb-3 col-md-6">
             <label for="location" class="form-label">Location</label>
-            <input type="text" class="form-control" placeholder="Ratnagiri,Maharastra" name="location" required/>
-            <div class="invalid-feedback">Enter Valid Location</div>
-        </div>
-        <div class="mb-3 col-8">
+            <input type="text" class="form-control" name="location" placeholder="Ratnagiri, Maharashtra" required>
+            <div class="invalid-feedback">Enter valid location</div>
+          </div>
+          <div class="mb-3 col-md-6">
             <label for="country" class="form-label">Country</label>
-            <input type="text"  class="form-control" placeholder="India" name="country" required/>
-            <div class="invalid-feedback">Enter Valid Country</div>
+            <input type="text" class="form-control" name="country" placeholder="India" required>
+            <div class="invalid-feedback">Enter valid country</div>
+          </div>
         </div>
-       </div>
-         
-        <button class="btn btn-danger">ADD</button>
-        <br><br>
-    </form>
-  </body>
- </div>
+
+        <!-- Submit -->
+        <button class="btn btn-danger w-40 w-sm-40 w-md-30 w-lg-30">Add</button>
+      </form>
+    </div>
+  </div>
+</div>

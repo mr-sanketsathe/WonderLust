@@ -1,53 +1,66 @@
 <% layout('./layouts/boilerplate') -%>
-<div class="col-8 offset-2 mt-4">
-    <body>
-    <form method="post" action="/listing/<%=data._id%>/edit?_method=put" novalidate class="needs-validation" enctype="multipart/form-data">
-        <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-             <input type="text" class="form-control" placeholder="Enter catchy title" value="<%=data.title%>" name="title" required/>
-             <div class="invalid-feedback">Title is required</div>
 
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+      <h4 class="text-center mb-4">Edit Listing</h4>
 
-        </div>
-       
+      <form method="POST" action="/listing/<%= data._id %>/edit?_method=PUT" enctype="multipart/form-data" novalidate class="needs-validation">
+        
+        <!-- Title -->
         <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-             <textarea name="description" placeholder="Describe your listing" required class="form-control"><%=data.description%></textarea>
-              <div class="invalid-feedback">Description is required</div>
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" name="title" placeholder="Enter catchy title" value="<%= data.title %>" required />
+          <div class="invalid-feedback">Title is required</div>
         </div>
-         <label for="img" class="form-label">Original Image</label>
-          <div class="mb-3">
-            
-             <img id="img" style="width:200px;height: 100px;"src="<%=data.image.url%>" alt="listing">
-        </div>
+
+        <!-- Description -->
         <div class="mb-3">
-            <label for="image" class="form-label">Chose another image</label>
-             <input type="file" id="image" class="form-control"  name="image" required/>
+          <label for="description" class="form-label">Description</label>
+          <textarea name="description" class="form-control" placeholder="Describe your listing" rows="4" required><%= data.description %></textarea>
+          <div class="invalid-feedback">Description is required</div>
         </div>
-       
+
+        <!-- Current Image -->
         <div class="mb-3">
-            <label for="price" class="form-label">Price</label>
-            <input type="number"  class="form-control" placeholder="eg 1200" value="<%=data.price%>" name="price" required/>
-             <div class="invalid-feedback">Price is required</div>
+          <label class="form-label">Current Image</label><br />
+          <img src="<%= data.image.url %>" alt="listing" class="img-fluid rounded" style="max-width: 200px; height: auto;" />
         </div>
+
+        <!-- New Image Upload -->
+        <div class="mb-3">
+          <label for="image" class="form-label">Choose Another Image</label>
+          <input type="file" class="form-control" id="image" name="image" required />
+        </div>
+
+        <!-- Price -->
+        <div class="mb-3">
+          <label for="price" class="form-label">Price</label>
+          <input type="number" class="form-control" name="price" value="<%= data.price %>" placeholder="e.g. 1200" required />
+          <div class="invalid-feedback">Price is required</div>
+        </div>
+
+        <!-- Location and Country -->
         <div class="row">
-            <div class="mb-3 col-4">
+          <div class="mb-3 col-md-6">
             <label for="location" class="form-label">Location</label>
-            <input type="text" class="form-control" required placeholder="ratnagiri,Maharastra" value="<%=data.location%>" name="location"/>
-             <div class="invalid-feedback">Location is required</div>
-        </div>
-        <div class="mb-3 col-8">
-            <label for="country" class="form-label">Country</label>
-            <input type="text"  class="form-control" required placeholder="India" value="<%=data.country%>" name="country"/>
-             <div class="invalid-feedback">Country is required</div>
-        </div>
-       </div>
-         
-        <button class="btn btn-danger">ADD</button>
-        <a style="margin-left:0.5rem;" href="/listing/<%=data._id%>/edit"><button class="btn btn-primary">BACK</button></a>
-        <br><br>
-    </form>
-    
-</body>
+            <input type="text" class="form-control" name="location" value="<%= data.location %>" placeholder="Ratnagiri, Maharashtra" required />
+            <div class="invalid-feedback">Location is required</div>
+          </div>
 
+          <div class="mb-3 col-md-6">
+            <label for="country" class="form-label">Country</label>
+            <input type="text" class="form-control" name="country" value="<%= data.country %>" placeholder="India" required />
+            <div class="invalid-feedback">Country is required</div>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex flex-wrap gap-2">
+          <button type="submit" class="btn btn-danger  w-40 w-sm-40 w-md-30 w-lg-30">Update</button>
+          <button class="btn btn-secondary w-40 w-sm-40 w-md-30 w-lg-30"><a href="/listing/<%= data._id %>" class="btn btn-secondary w-40 w-sm-40 w-md-30 w-lg-30">Back</a></button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
